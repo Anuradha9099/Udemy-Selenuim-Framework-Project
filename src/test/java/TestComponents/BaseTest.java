@@ -1,4 +1,72 @@
 package TestComponents;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.anuradhaacademy.pageObjects.landingPage;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
+
 public class BaseTest {
+
+    public WebDriver webDriver;
+    public landingPage landingPage;
+
+    public WebDriver initalzeDriver() throws IOException {
+
+        Properties properties = new Properties();
+        FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "//src//main//java//Resources//Globaldata.properties");
+
+        properties.load(fileInputStream);
+        String browserName = properties.getProperty("browser");
+        if (browserName.equals("chrome")) {
+            webDriver = new ChromeDriver();
+        }
+        webDriver.manage().window().maximize();
+        return webDriver;
+    }
+
+    public List<HashMap<String, String>> getJsonDataToMap(String filePath) throws IOException {
+        String jsonContent = FileUtils.readFileToString(new File(filePath),
+                StandardCharsets.UTF_8);
+
+        //convert string to HashMap - Jackson DataBind
+        ObjectMapper mapper = new ObjectMapper();
+        List<HashMap<String, String>> data = mapper.readValue(jsonContent, new TypeReference<List<HashMap<String, String>>>() {
+        });
+
+        return data;
+    }
+
+    public String getScreenShot(String testCaseName, WebDriver driver) throws IOException {
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
+        FileUtils.copyFile(source, file);
+        return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";
+    }
+
+    @BeforeMethod
+    public void launchWebSite() throws IOException {
+        webDriver = initalzeDriver();
+        landingPage = new landingPage(webDriver);
+        landingPage.navigateToPageURL();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        webDriver.quit();
+    }
 }
