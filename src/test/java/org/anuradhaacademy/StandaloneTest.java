@@ -1,23 +1,23 @@
 package org.anuradhaacademy;
 
 import TestComponents.BaseTest;
+import TestComponents.RetryMechanisumNG;
+import com.sun.net.httpserver.Authenticator;
 import org.anuradhaacademy.pageObjects.*;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
 public class StandaloneTest extends BaseTest {
 
-    @Test(dataProvider = "getData")
+    @Test(dataProvider = "getData", retryAnalyzer = RetryMechanisumNG.class)
     public void endToEndTest(HashMap<String, String> input) throws IOException {
 
-        // why HashMap? becuase handling seperate arguments then next day no of arguments can be chnaged.
         ProductCatalogPage productCatalogPage = landingPage.loginApplication(input.get("email"), input.get("password"));
         Assert.assertEquals(landingPage.getLoginMessage(), "Login Successfully");
 
@@ -47,6 +47,7 @@ public class StandaloneTest extends BaseTest {
         //using hashmaps
 //        HashMap<String, String> hashMap = new HashMap<String, String>();
 //        hashMap.put("email", "nima1@gmail.com");
+
 //        hashMap.put("password", "Nima@5056");
 //        hashMap.put("product", "ADIDAS ORIGINAL");
 //
@@ -55,6 +56,9 @@ public class StandaloneTest extends BaseTest {
 //        hashMap1.put("password", "Nima@5057");
 //        hashMap1.put("product", "ZARA COAT 3");
 
+//why use hashmap? because we can handle seperate arguments then next day no of arguments can be chnaged.
+
+        //using json file
         List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "//src//test//java//TestData//Data.json");
         return new Object[][]{{data.get(0)}, {data.get(1)}};
     }

@@ -8,6 +8,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -33,6 +34,8 @@ public class BaseTest {
         String browserName = properties.getProperty("browser");
         if (browserName.equals("chrome")) {
             webDriver = new ChromeDriver();
+        } else if (browserName.equals("edge")) {
+            webDriver = new EdgeDriver();
         }
         webDriver.manage().window().maximize();
         return webDriver;
@@ -43,6 +46,7 @@ public class BaseTest {
                 StandardCharsets.UTF_8);
 
         //convert string to HashMap - Jackson DataBind
+        //why use Jackson DataBind? because it is a library that converts JSON to Java objects and vice versa.40 lines  
         ObjectMapper mapper = new ObjectMapper();
         List<HashMap<String, String>> data = mapper.readValue(jsonContent, new TypeReference<List<HashMap<String, String>>>() {
         });

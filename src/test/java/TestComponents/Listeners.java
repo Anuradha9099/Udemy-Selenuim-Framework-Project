@@ -12,6 +12,15 @@ import org.testng.ITestResult;
 import java.io.IOException;
 
 public class Listeners extends BaseTest implements ITestListener {
+/*
+explain this what does it do?
+it is a listener class that implements the ITestListener interface.
+it is used to listen to the test events and report the test results.
+it is used to create the extent report.
+it is used to add the test results to the extent report.
+it is used to add the test results to the extent report.
+
+*/
     ExtentTest extentTest;
     ExtentReports extentReports = ExtentReporterNG.getReportObject();
 
