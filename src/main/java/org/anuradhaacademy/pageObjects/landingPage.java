@@ -8,6 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class landingPage extends AbstractComponent {
+    /*
+    this page is used to login to the application.
+    we use page factory to initialize the elements.
+    */
+
     WebDriver driver;
 
     public landingPage(WebDriver webDriver) {

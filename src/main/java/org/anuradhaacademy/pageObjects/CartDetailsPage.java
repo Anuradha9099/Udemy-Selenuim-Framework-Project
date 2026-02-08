@@ -10,6 +10,15 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class CartDetailsPage extends AbstractComponent {
+    /*
+    this page is used to get the cart product details and click the checkout button.
+    we use stream to get the product details and check if the product is in the cart.
+
+    why use stream? because it is a library that provides a way to process collections of data.
+    we use stream to get the product details and check if the product is in the cart.
+    why use anyMatch? because it is a method that returns true if any of the elements in the stream match the predicate.
+    */
+
 
     WebDriver driver;
 
