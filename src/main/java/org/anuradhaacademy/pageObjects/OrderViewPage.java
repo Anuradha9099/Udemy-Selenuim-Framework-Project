@@ -19,7 +19,7 @@ public class OrderViewPage extends AbstractComponent {
     }
 
     @FindBy(css = "tr td:nth-child(3)")
-    List<WebElement> productList;
+    private List<WebElement> productList;
 
     public Boolean verifyProductIsDisplayed(String productName) {
         waitToWebElementListToBeAppreard(productList);

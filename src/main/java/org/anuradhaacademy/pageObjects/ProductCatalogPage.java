@@ -21,17 +21,17 @@ public class ProductCatalogPage extends AbstractComponent {
     }
 
     @FindBy(css = ".mb-3")
-    List<WebElement> productList;
+    private List<WebElement> productList;
 
     @FindBy(css = ".ng-animating")
-    WebElement spinner;
+    private WebElement spinner;
 
     @FindBy(xpath = "//div[text()=' Product Added To Cart ']")
-    WebElement toastMessageProductMessage;
+    private WebElement toastMessageProductMessage;
 
-    By productBy = By.cssSelector(".mb-3");
-    By addToCart = By.cssSelector(".card-body .btn.w-10.rounded");
-    By toastMessageProduct = By.cssSelector("#toast-container");
+    private By productBy = By.cssSelector(".mb-3");
+    private By addToCart = By.cssSelector(".card-body .btn.w-10.rounded");
+    private By toastMessageProduct = By.cssSelector("#toast-container");
 
     public List<WebElement> getProductList() {
         waitToElementToBeAppreard(productBy);

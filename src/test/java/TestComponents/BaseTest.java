@@ -16,24 +16,29 @@ import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
+import static java.lang.System.load;
+
 public class BaseTest {
 
     public WebDriver webDriver;
     public landingPage landingPage;
+    public Properties properties;
 
     public WebDriver initalzeDriver() throws IOException {
 
-        Properties properties = new Properties();
+        properties = new Properties();
         FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "//src//main//java//Resources//Globaldata.properties");
 
         properties.load(fileInputStream);
         String browserName = properties.getProperty("browser");
+
         if (browserName.contains("chrome")) {
             ChromeOptions options = new ChromeOptions();
             if(browserName.contains("headless")){
@@ -73,9 +78,14 @@ public class BaseTest {
 
     @BeforeMethod
     public void launchWebSite() throws IOException {
+        properties = new Properties();
+        FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir") + "//src//main//java//Resources//Globaldata.properties");
+        properties.load(fileInputStream);
+        String baseUrl = properties.getProperty("BASE_URL");
+
         webDriver = initalzeDriver();
         landingPage = new landingPage(webDriver);
-        landingPage.navigateToPageURL();
+        landingPage.navigateToPageURL(baseUrl);
     }
 
     @AfterMethod

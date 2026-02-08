@@ -24,24 +24,24 @@ public class landingPage extends AbstractComponent {
 
     //page factory
     @FindBy(id = "userEmail")
-    WebElement userEmail;
+    private WebElement userEmail;
 
     @FindBy(id = "userPassword")
-    WebElement userPassword;
+    private WebElement userPassword;
 
     @FindBy(id = "login")
-    WebElement submitButton;
+    private WebElement submitButton;
 
     @FindBy(xpath = "//div[text()=' Login Successfully ']")
-    WebElement successMessage;
+    private WebElement successMessage;
 
     @FindBy(css = "[class*=flyInOut]")
-    WebElement errorMessage;
+    private WebElement errorMessage;
 
     @FindBy(xpath = "(//div[@class='ng-star-inserted'])[1]")
-    WebElement errorUsernameLable;
+    private WebElement errorUsernameLable;
 
-    By successToast = By.cssSelector("#toast-container");
+    private By successToast = By.cssSelector("#toast-container");
 
     public ProductCatalogPage loginApplication(String email, String password) {
         userEmail.sendKeys(email);
@@ -51,8 +51,8 @@ public class landingPage extends AbstractComponent {
         return productCatalogPage;
     }
 
-    public void navigateToPageURL() {
-        driver.get("https://rahulshettyacademy.com/client");
+    public void navigateToPageURL(String url) {
+        driver.get(url);
     }
 
     public String getLoginMessage() {

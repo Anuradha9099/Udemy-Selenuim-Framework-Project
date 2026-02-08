@@ -29,10 +29,10 @@ public class CartDetailsPage extends AbstractComponent {
     }
 
     @FindBy(xpath = "//div[@class='cartSection']/h3")
-    List<WebElement> cartProductDetails;
+    private List<WebElement> cartProductDetails;
 
     @FindBy(css=".totalRow button:last-of-type")
-    WebElement checkOutButton;
+    private WebElement checkOutButton;
 
     public Boolean getCartProductDetails(String productName) {
         waitToWebElementListToBeAppreard(cartProductDetails);

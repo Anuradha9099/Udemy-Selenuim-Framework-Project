@@ -17,9 +17,9 @@ public class OrderThanksPage extends AbstractComponent {
         PageFactory.initElements(driver,this);
     }
     @FindBy(tagName = "h1")
-    WebElement thanksHeadingInfo;
+    private WebElement thanksHeadingInfo;
 
-    By thanksHeading= By.tagName("h1");
+    private By thanksHeading= By.tagName("h1");
 
     public String getSucessMesageOfOrderThanks(){
         waitToElementToBeAppreard(thanksHeading);

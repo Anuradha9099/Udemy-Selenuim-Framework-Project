@@ -22,15 +22,15 @@ public class ShippingDetialsPage extends AbstractComponent {
     }
 
     @FindBy(xpath = "//input[@placeholder='Select Country']")
-    WebElement countryPlaceHolder;
+    private WebElement countryPlaceHolder;
 
     @FindBy(xpath = "//button[contains(@class,'ta-item')]")
-    List<WebElement> countryList;
+    private List<WebElement> countryList;
 
     @FindBy(xpath = "//a[@class='btnn action__submit ng-star-inserted']")
-    WebElement placeOrderButton;
+    private WebElement placeOrderButton;
 
-    By waitDropDownElementsToBeVisible= By.xpath("//button[@class='ta-item list-group-item ng-star-inserted']");
+    private By waitDropDownElementsToBeVisible= By.xpath("//button[@class='ta-item list-group-item ng-star-inserted']");
 
 
     public void setCountryPlaceHolder(){

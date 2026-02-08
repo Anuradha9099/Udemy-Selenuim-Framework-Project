@@ -2,7 +2,6 @@ package org.anuradhaacademy;
 
 import TestComponents.BaseTest;
 import TestComponents.RetryMechanisumNG;
-import com.sun.net.httpserver.Authenticator;
 import org.anuradhaacademy.pageObjects.*;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
