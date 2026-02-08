@@ -80,6 +80,9 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id> Test2 </id>
+        </profile>
     </profiles>
 
     <build>
